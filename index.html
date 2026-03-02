@@ -4,32 +4,87 @@
   <meta charset="UTF-8">
   <title>Hong Kong Rental Reimbursement – Assessable Income Estimator</title>
 
-  <!-- Google Analytics (GA4) – replace G-XXXXXXXXXX with your Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NFRRJLFWX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Make layout responsive on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  gtag('config', 'G-2NFRRJLFWX');
+  <!-- Google Analytics (GA4) – replace G-XXXXXXXXXX with your Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G-2NFRRJLFWX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-G-2NFRRJLFWX');
   </script>
   <!-- End Google Analytics -->
 
   <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: 20px auto; line-height: 1.5; color: #000; }
+    /* Make sizing predictable and inputs fill properly */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 20px auto;
+      line-height: 1.5;
+      color: #000;
+      padding: 0 12px;
+    }
     h1 { font-size: 22px; }
-    h2 { font-size: 18px; margin-top: 30px; }
+    h2 { font-size: 18px; margin-top: 24px; }
     label { display: block; margin: 8px 0 4px; }
-    input, select { padding: 5px; width: 260px; max-width: 100%; }
-    .row { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 20px; }
-    .card { border: 1px solid #ccc; padding: 15px; border-radius: 6px; flex: 1; min-width: 260px; }
-    .result-line { margin: 4px 0; }
+
+    input, select {
+      padding: 10px;
+      width: 100%;          /* full width of container */
+      max-width: 100%;
+      font-size: 16px;      /* avoids iOS Safari zoom on focus */
+      margin-bottom: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      padding: 12px;
+      border-radius: 6px;
+      flex: 1 1 260px;
+      min-width: 0;
+      background: #fff;
+    }
+    .result-line {
+      margin: 4px 0;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
     .highlight { font-weight: bold; }
     .warning { color: #b22222; font-size: 13px; margin-top: 10px; }
-    button { margin-top: 15px; padding: 8px 14px; cursor: pointer; }
+    button {
+      margin-top: 10px;
+      padding: 10px 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      border: 1px solid #999;
+      background: #f5f5f5;
+    }
     small { font-size: 12px; color: #555; }
     a { color: #0645ad; }
     .green { color: #008000; }
+
+    @media (max-width: 600px) {
+      body { margin: 10px auto; padding: 0 10px; }
+      h1 { font-size: 20px; }
+      h2 { font-size: 16px; }
+      .row { flex-direction: column; }
+      .card { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -134,7 +189,7 @@
       </a>
     </small></p>
     <p><small>
-      © 2026 arie-hk. All rights reserved.
+      © 2026 Your Name / Your Company. All rights reserved.
     </small></p>
   </div>
 
@@ -150,29 +205,21 @@
 
       // Scenario B – with rental reimbursement
       const annualReimbursed = monthlyReimbursed * 12;
-      const bCashIncome = Math.max(0, annualIncome - annualReimbursed); // package kept the same in concept
+      const bCashIncome = Math.max(0, annualIncome - annualReimbursed);
 
-      // RV base: % of income from employer (simplified)
       const rvBase = bCashIncome * (rvPercent / 100);
-
-      // Rent suffered: actual rent - reimbursed (if positive)
       const rentSuffered = Math.max(0, (monthlyRent - monthlyReimbursed) * 12);
-
-      // Net RV after deducting rent suffered (cannot be negative)
       const rvNet = Math.max(0, rvBase - rentSuffered);
 
       const bAssessableIncome = bCashIncome + rvNet;
 
-      // Decide which scenario is more favourable (lower assessable income)
       const lowerIsB = bAssessableIncome < aAssessableIncome;
 
-      // Display Scenario A
       document.getElementById('aIncome').innerHTML =
         (lowerIsB ? "" : "<span class='green'>") +
         "Assessable income (simplified) under Scenario A: HKD " + aAssessableIncome.toLocaleString() +
         (lowerIsB ? "" : "</span>");
 
-      // Display Scenario B
       document.getElementById('bCashIncome').textContent =
         "Cash income after converting part to housing (Scenario B): HKD " + bCashIncome.toLocaleString();
       document.getElementById('bRVBase').textContent =
@@ -186,7 +233,6 @@
         "Assessable income (simplified) under Scenario B: HKD " + bAssessableIncome.toLocaleString() +
         (lowerIsB ? "</span>" : "");
 
-      // Comparison of assessable income
       const diff = aAssessableIncome - bAssessableIncome;
       let diffText;
       if (Math.abs(diff) < 1) {
@@ -210,6 +256,7 @@
   </script>
 </body>
 </html>
+
 
 
 
