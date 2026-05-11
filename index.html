@@ -4,27 +4,17 @@
   <meta charset="UTF-8">
   <title>Hong Kong Rental Reimbursement – Assessable Income Estimator</title>
 
-  <!-- Make layout responsive on mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <!-- Google Analytics (GA4) – replace G-XXXXXXXXXX with your Measurement ID -->
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2NFRRJLFWX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2NFRRJLFWX');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NFRRJLFWX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2NFRRJLFWX');
+  </script>
   <!-- End Google Analytics -->
 
   <style>
-    /* Make sizing predictable and inputs fill properly */
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       font-family: Arial, sans-serif;
       max-width: 900px;
@@ -32,76 +22,141 @@
       line-height: 1.5;
       color: #000;
       padding: 0 12px;
+      box-sizing: border-box;
     }
+
     h1 { font-size: 22px; }
-    h2 { font-size: 18px; margin-top: 24px; }
+    h2 { font-size: 18px; margin-top: 30px; }
     label { display: block; margin: 8px 0 4px; }
 
     input, select {
-      padding: 10px;
-      width: 100%;          /* full width of container */
+      padding: 8px;
+      width: 260px;
       max-width: 100%;
-      font-size: 16px;      /* avoids iOS Safari zoom on focus */
-      margin-bottom: 6px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
     }
 
     .row {
       display: flex;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: 40px;
       margin-top: 20px;
     }
+
     .card {
       border: 1px solid #ccc;
-      padding: 12px;
+      padding: 15px;
       border-radius: 6px;
-      flex: 1 1 260px;
-      min-width: 0;
-      background: #fff;
+      flex: 1;
+      min-width: 260px;
     }
+
     .result-line {
       margin: 4px 0;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
+      word-break: break-word;
     }
+
     .highlight { font-weight: bold; }
     .warning { color: #b22222; font-size: 13px; margin-top: 10px; }
+
     button {
-      margin-top: 10px;
-      padding: 10px 16px;
+      margin-top: 15px;
+      padding: 8px 14px;
       cursor: pointer;
-      border-radius: 4px;
-      border: 1px solid #999;
-      background: #f5f5f5;
+      font-size: 16px;
     }
+
     small { font-size: 12px; color: #555; }
     a { color: #0645ad; }
     .green { color: #008000; }
 
+    .site-footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      padding-bottom: 10px;
+      text-align: center;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin: 12px 0;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #d0d0d0;
+      border-radius: 999px;
+      background: #fff;
+      color: #111;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .social-link:hover {
+      background: #f5f5f5;
+      transform: translateY(-1px);
+    }
+
+    .social-link:focus-visible {
+      outline: 2px solid #111;
+      outline-offset: 2px;
+    }
+
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
     @media (max-width: 600px) {
-      body { margin: 10px auto; padding: 0 10px; }
+      body {
+        margin: 12px auto;
+        padding: 0 10px;
+      }
+
       h1 { font-size: 20px; }
       h2 { font-size: 16px; }
-      .row { flex-direction: column; }
-      .card { width: 100%; }
+
+      input, select, button {
+        width: 100%;
+      }
+
+      .row {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .card {
+        min-width: 0;
+      }
     }
   </style>
 </head>
 <body>
   <h1>Hong Kong Rental Reimbursement – Assessable Income Estimator</h1>
+
   <p>
     This page gives a rough estimation of how a rental reimbursement scheme
     (treated as a place of residence with Rental Value, “RV”) may change your assessable income
     under Hong Kong salaries tax. It does not replace professional tax advice.
   </p>
+
   <p>
     The figures are for one Hong Kong year of assessment
     (from 1 April to 31 March of the following year).
     Employment income typically includes salary, bonus, commissions, vested share awards,
     stock option gains, and benefits in kind arising from your employment.
   </p>
+
   <p>
     The ultimate goal of this tool is to compare the assessable income under
     <strong>Scenario A (no rental reimbursement)</strong> and
@@ -164,36 +219,69 @@
       stamped tenancy agreement, rent receipts and internal records showing that normal
       landlord–tenant formalities are observed.
     </p>
+
     <p>
       The treatment of Rental Value and “rent suffered” in this tool is broadly aligned with
       the Inland Revenue Department’s examples in the pamphlet
-      <a href="https://www.ird.gov.hk/eng/pdf/pam44e.pdf" target="_blank" rel="noopener">
+      <a href="https://www.ird.gov.hk/eng/pdf/pam44e.pdf" target="_blank" rel="noopener noreferrer">
         “How to tax the provision of a place of residence to the employee”
       </a>, including situations where the employee bears part of the rent and the taxable
       benefit effectively reflects RV minus rent paid by the employee.
     </p>
+
     <p class="warning">
       Important:
       <br>• This is a simplified estimator focusing on assessable income only. It does not calculate actual salaries tax or personal allowances.
-      <br>• The scheme only works as intended if the Inland Revenue Department accepts that a place of residence is provided and
-      the employer keeps sufficient documentation (lease, receipts, internal policy, etc.).
+      <br>• The scheme only works as intended if the Inland Revenue Department accepts that a place of residence is provided and the employer keeps sufficient documentation (lease, receipts, internal policy, etc.).
       <br>• Actual tax treatment depends on IRD’s final assessment and your individual circumstances.
     </p>
+
     <p><small>
       Useful references:
-      <br>• IRD – Housing Benefits: 
-      <a href="https://www.ird.gov.hk/eng/tax/ere_house.htm" target="_blank" rel="noopener">
+      <br>• IRD – Housing Benefits:
+      <a href="https://www.ird.gov.hk/eng/tax/ere_house.htm" target="_blank" rel="noopener noreferrer">
         https://www.ird.gov.hk/eng/tax/ere_house.htm
       </a>
-      <br>• GovHK – How the Provision of a Place of Residence to an Employee is Taxed: 
-      <a href="https://www.gov.hk/en/residents/taxes/salaries/salariestax/chargeable/residence.htm" target="_blank" rel="noopener">
+      <br>• GovHK – How the Provision of a Place of Residence to an Employee is Taxed:
+      <a href="https://www.gov.hk/en/residents/taxes/salaries/salariestax/chargeable/residence.htm" target="_blank" rel="noopener noreferrer">
         https://www.gov.hk/en/residents/taxes/salaries/salariestax/chargeable/residence.htm
       </a>
     </small></p>
-    <p><small>
-      © 2026 arie-hk. All rights reserved.
-    </small></p>
   </div>
+
+<footer class="site-footer">
+  <p class="footer-title">Connect with me</p>
+
+  <div class="social-links">
+    <a
+      class="social-link threads"
+      href="https://www.threads.net/@hr_arieg"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Visit Arie Grey on Threads"
+      title="Threads"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M16.3 11.1c-.2 0-.4 0-.7.1-.1-2.3-1.4-3.6-3.6-3.7-1.3-.1-2.4.3-3.2 1.1-.6.6-.9 1.3-1 2.1l1.8.3c.1-.5.3-.9.6-1.2.4-.4 1-.6 1.7-.6 1.4.1 2 .8 2.1 2.4-1 .1-2 .3-2.8.6-1.7.6-2.5 1.6-2.4 3.1.1 1.6 1.4 2.8 3.3 2.8 1.4 0 2.5-.5 3.2-1.4.6-.8.9-1.9.9-3.2v-.3c.2 0 .3 0 .5-.1 1 .1 1.8.8 1.9 1.7.1.7-.1 1.4-.6 2-.7.8-1.8 1.2-3.4 1.3-1.7.1-3.2-.3-4.4-1.2-1.2-.9-2-2.2-2.2-3.8-.2-1.7.3-3.3 1.4-4.5 1.1-1.3 2.7-2 4.7-2.1 2.1-.1 3.9.5 5.2 1.8 1 1 1.5 2.3 1.6 3.8.8.2 1.4.6 1.9 1.1.7.7 1.1 1.6 1.2 2.6.1 1.3-.3 2.5-1.2 3.5-1.1 1.2-2.7 1.9-5 2-2.3.1-4.2-.5-5.8-1.7-1.5-1.2-2.4-2.9-2.7-5-.3-2.2.3-4.2 1.8-5.8 1.4-1.6 3.5-2.5 6-2.6 2.7-.1 4.9.7 6.5 2.3 1.3 1.3 2 3 2.1 5.1-.1-.1-.2-.1-.4-.1z"/>
+      </svg>
+    </a>
+
+    <a
+      class="social-link linkedin"
+      href="https://www.linkedin.com/in/arie-grey"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Visit Arie Grey on LinkedIn"
+      title="LinkedIn"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.66H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/>
+      </svg>
+    </a>
+  </div>
+
+  <p class="footer-copy">© 2026 Arie Grey. All rights reserved.</p>
+</footer>
 
   <script>
     function calculate() {
@@ -202,17 +290,13 @@
       const monthlyReimbursed = Number(document.getElementById('monthlyReimbursed').value) || 0;
       const rvPercent = Number(document.getElementById('accommodationType').value) || 10;
 
-      // Scenario A – no rental reimbursement
       const aAssessableIncome = annualIncome;
 
-      // Scenario B – with rental reimbursement
       const annualReimbursed = monthlyReimbursed * 12;
       const bCashIncome = Math.max(0, annualIncome - annualReimbursed);
-
       const rvBase = bCashIncome * (rvPercent / 100);
       const rentSuffered = Math.max(0, (monthlyRent - monthlyReimbursed) * 12);
       const rvNet = Math.max(0, rvBase - rentSuffered);
-
       const bAssessableIncome = bCashIncome + rvNet;
 
       const lowerIsB = bAssessableIncome < aAssessableIncome;
@@ -237,6 +321,7 @@
 
       const diff = aAssessableIncome - bAssessableIncome;
       let diffText;
+
       if (Math.abs(diff) < 1) {
         diffText = "Both scenarios give roughly the same assessable income (simplified).";
       } else if (diff > 0) {
@@ -246,11 +331,11 @@
         diffText = "Scenario A (no rental reimbursement) gives a lower assessable income by about HKD " +
           Math.abs(diff).toLocaleString() + ", and is more favourable in this simplified comparison.";
       }
+
       document.getElementById('diffIncome').textContent = diffText;
 
       document.getElementById('noteRentSuffered').textContent =
-        "When your actual rent is higher than the reimbursed amount, the difference (“rent suffered”) is used here " +
-        "to reduce the rental value, similar to IRD examples. Actual treatment depends on IRD’s final assessment.";
+        "When your actual rent is higher than the reimbursed amount, the difference (“rent suffered”) is used here to reduce the rental value, similar to IRD examples. Actual treatment depends on IRD’s final assessment.";
 
       document.getElementById('results').style.display = 'flex';
       document.getElementById('comparison').style.display = 'block';
